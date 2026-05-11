@@ -260,6 +260,7 @@ footer{text-align:center;padding:var(--s6) var(--s8);color:var(--faint);font-siz
   <!-- CONTADORES -->
   <div class="counter-bar" id="counterBar">
     <div class="counter-chip"><strong id="cnt-total">0</strong><span>Total registros</span></div>
+    <div class="counter-chip"><strong id="cnt-c">0</strong><span>Contexto</span></div>
     <div class="counter-chip"><strong id="cnt-p">0</strong><span>Político</span></div>
     <div class="counter-chip"><strong id="cnt-e">0</strong><span>Económico</span></div>
     <div class="counter-chip"><strong id="cnt-s">0</strong><span>Social</span></div>
@@ -281,6 +282,7 @@ footer{text-align:center;padding:var(--s6) var(--s8);color:var(--faint);font-siz
         <label for="f-dim">Dimensión <span class="required-mark">*</span></label>
         <select id="f-dim">
           <option value="">— Selecciona —</option>
+          <option value="Contexto">Contexto</option>
           <option value="Político">Político</option>
           <option value="Económico">Económico</option>
           <option value="Social">Social</option>
@@ -516,10 +518,10 @@ async function loadTopics() {
 let temasMap     = {};  // se carga dinámicamente desde Google Sheets (hoja 'Temas')
 let currentUser  = '';  // nombre del practicante autenticado
 
-const cntKeys = {'Político':'cnt-p','Económico':'cnt-e','Social':'cnt-s','Tecnológico':'cnt-t','Ecológico':'cnt-ec','Legal':'cnt-l'};
+const cntKeys = {'Contexto':'cnt-c','Político':'cnt-p','Económico':'cnt-e','Social':'cnt-s','Tecnológico':'cnt-t','Ecológico':'cnt-ec','Legal':'cnt-l'};
 
 const dimColor = {
-  'Político':'chip-p','Económico':'chip-e','Social':'chip-s',
+  'Contexto':'cnt-c','Político':'chip-p','Económico':'chip-e','Social':'chip-s',
   'Tecnológico':'chip-t','Ecológico':'chip-ec','Legal':'chip-l'
 };
 
@@ -530,6 +532,7 @@ let editingId = null;
 //  RENDER PESTAÑA 2 — TEMAS CRÍTICOS DINÁMICOS
 // ══════════════════════════════════════════════════════
 const dimColors = {
+  'Contexto':   '#ec1679',
   'Político':   '#8b5cf6',
   'Económico':  '#f59e0b',
   'Social':     '#06b6d4',
@@ -538,6 +541,7 @@ const dimColors = {
   'Legal':      '#ef4444'
 };
 const dimSubs = {
+  'Contexto':   'Contexto internacional y regional',
   'Político':   'Gobierno y política pública',
   'Económico':  'Macroeconomía y finanzas',
   'Social':     'Demografía y sociedad',
@@ -598,8 +602,8 @@ function renderIndicators() {
   }
 
   const total = records.length;
-  const dims  = ['Político','Económico','Social','Tecnológico','Ecológico','Legal'];
-  const colors = { 'Político':'#8b5cf6','Económico':'#f59e0b','Social':'#06b6d4','Tecnológico':'#3b82f6','Ecológico':'#22c55e','Legal':'#ef4444' };
+  const dims  = ['Contexto','Político','Económico','Social','Tecnológico','Ecológico','Legal'];
+  const colors = {'Contexto':'#ec1679','Político':'#8b5cf6','Económico':'#f59e0b','Social':'#06b6d4','Tecnológico':'#3b82f6','Ecológico':'#22c55e','Legal':'#ef4444' };
 
   // ── Resumen por dimensión ──
   const byDim = {};
